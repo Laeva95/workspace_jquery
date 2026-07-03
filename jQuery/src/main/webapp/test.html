@@ -6,8 +6,15 @@
 		<!-- 
 			설치 적용 방법 1.
 				js 폴더에 다운로드 받은 jquery 파일 경로를 작성해서 JQuery 문법을 사용
-		 -->
+		 
 		 <script src="./js/jquery-4.0.0.min.js"></script>
+		 -->
+		 
+		 <!--
+		 	설치 적용 방법 2.
+		 		CDN 주소를 복사해서 JQuery 문법을 사용할 수 있게 적용
+		 -->
+		 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
 		<h1>자바스크립트</h1>
@@ -16,11 +23,18 @@
 		<h2>제이쿼리</h2>
 		<h2 id="h2">제이쿼리2</h2>
 		
+		<h3 id="h3">테스트</h3>	
+	
+		
 		<script>
+		/*
+			JQuery 기본 선택자 작성 방법
+				$("CSS선택자") 태그명, #id명, .클래스명
+				=> 선택자 문법에 해당되는 모든 html 태그 요소를 선택해서 배열로 가져옴
+					하나만 존재하는 태그나 클래스, 아이디 속성값으로 하나의 요소를 가져와도 배열 형태임!
+		*/
 			console.log($("h2")[0]);
-			
+			console.log($("#h3")[0]);
 		</script>
-		
-		
 	</body>
 </html>
