@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<!-- 
+			JQuery 문법을 사용하기 위해 CDN 주소 작성
+		 	CND: 라이브러리를 내 PC에 설치하지 않고 인터넷 주소로 불러오는 방식
+		 -->
+		 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		 <script type="text/javascript">
+		 	/*
+		 		선택자 종류
+		 			$("선택자_종류식"): 브라우저가 HTML 태그들을 인식해서 만든 문서의 요소를 선택
+		 			
+		 		직접 선택자
+		 			주로 멀리 떨어진 요소를 직접 선택
+		 			- 전체 선택자: *		-> 문서의 모든 요소 선택
+		 			- 아이디 선택자: # 		-> id값이 일치하는 요소 선택
+		 			- 클래스 선택자: .		-> class 값이 일치하는 요소 모두 선택
+		 			- 태그명 선택자: 태그	명	-> 해당 태그를 모두 선택
+		 			- 그룹 선택자: ,		-> 여러 선택자를 한번에 이용해서 선택
+		 	*/
+		 	
+		 	// window.onload: 브라우저가 HTML 문서 내부의 모든 태그를 읽은 후에 동작할 코드를 함수로 등록
+		 	
+		 	// $(function(){}): window.onload와 동일한 동작을 하는 JQuery 문법
+		 	$(function(){
+		 		// 전체 선택자를 이용해서 DOM 객체 선택
+		 		$("*").css("border", "1px solid blue");
+		 	});
+		 </script>
+	</head>
+	<body>
+		<h1>제이쿼리</h1>
+		<h2>선택자</h2>
+		<h3>직접선택자</h3>
+	</body>
+</html>

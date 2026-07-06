@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<!-- JQuery 문법을 사용하기 위한 CDN 주소 -->
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	</head>
+	<body>
+		<div id="wrap">
+			<h1>인접관계 선택자</h1>
+			<p>내용1</p>
+			<p class="txt">내용2</p>
+			<p>내용3</p>
+			<p>내용4</p>
+			
+		</div>
+		
+		<script type="text/javascript">
+			// prev(): 선택한 요소 직전의 형제 요소 선택
+			// next(): 선택한 요소 직후의 형제 요소 선택
+			
+			// 객체 내부에 css 스타일의 "속성":"값"을 설정해서 사용
+			let style_1 = {"background-color":"aqua", "border":"2px solid red"};
+			let style_2 = {"background-color":"yellow", "border":"2px dotted red"};
+			
+			// css 속성을 직접 입력하는 대신 객체를 전달하여 css 스타일 설정
+			$(".txt").prev().css(style_1);
+			$(".txt").next().css(style_2);
+			$(".txt + p").css("color", "blue");		// +: .next()메서드와 같은 역할
+			$(".txt").next().next().css(style_2);			// next(), prev()를 연속으로 사용해서 n만큼 떨어진 형제 요소 선택 가능
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

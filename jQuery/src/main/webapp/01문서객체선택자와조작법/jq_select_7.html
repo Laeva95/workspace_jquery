@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		
+		
+	</head>
+	<body>
+		<!-- 부모 요소 선택자 parent() -->
+		<h1>인접관계선택자</h1>
+		<ul id="wrap">
+			<li>
+				리스트
+				<ul>
+					<li id="list_1">
+						리스트1-1
+					</li>
+					<li id="list_2">
+						리스트1-2
+					</li>
+				</ul>
+			</li>
+			<li>
+				리스트2
+			</li>
+			<li>
+				리스트3
+			</li>
+		</ul>
+		<script type="text/javascript">
+				// 부모 요소 선택자 parent()
+				// 바로 한 단계 위 부모 요소를 선택
+				$("#list_1").parent().css("border", "2px dashed red");
+				
+				
+		
+		</script>
+	</body>
+</html>

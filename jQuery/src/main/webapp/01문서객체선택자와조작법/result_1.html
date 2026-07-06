@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<style type="text/css">
+			body {
+				font-family: sans-serif;
+			}
+			ul {
+				list-style: none;	
+			}
+			.item{
+				padding: 6px;
+				margin: 6px;
+			}
+			.badge{
+				color: #c0392b;
+			}
+			.price::after{
+				content:"원";
+			}
+		
+		</style>
+		
+	</head>
+	<body>
+		<h1>조선 K-뷰티 상품관</h1>
+		<div id="shop">
+			<section class=categoty>
+				<h2 class=cat-title>스킨케어</h2>
+				<ul>
+					<li class="item best">
+						<span class="name">조선 선크림</span>
+						<span class="price">15000</span>
+						<span class="badge">BEST</span>
+					</li>
+					<li class="item">
+						<span class="name">한방 토너</span>
+						<span class="price">22000</span>
+					</li>
+				</ul>
+			</section>
+			<section class=categoty>
+				<h2 class=cat-title>메이크업</h2>
+				<ul>
+					<li class="item best">
+						<span class="name">궁중 립밤</span>
+						<span class="price">18000</span>
+						<span class="badge">BEST</span>
+					</li>
+					<li class="item soldout">
+						<span class="name">단청 아이섀도</span>
+						<span class="price">27000</span>
+					</li>
+				</ul>
+			</section>
+		
+		</div>
+		
+		<script type="text/javascript">
+			$(function() {
+				// 태그명 선택자
+				$("h2").css("color", "#8b4513");
+				
+				// 종속 선택자
+				$("li.best").css("text-decoration", "line-through");
+				$("li.soldout").css("background-color", "#fffbe1");
+				
+				// 그룹 선택자
+				$(".badge, .cat-title").css("font-weight: bold");
+				
+				// 아이디 선택자
+				$("#shop").css("border", "3px double #4b0082");
+				
+				
+			})
+		
+		</script>
+	
+	</body>
+</html>

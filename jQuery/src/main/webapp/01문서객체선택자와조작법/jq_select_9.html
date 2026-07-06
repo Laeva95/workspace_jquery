@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		
+	</head>
+	<body>
+		<div id="wrap">
+			<h1>인접 관계 선택자</h1>
+			<h1>인접 관계 선택자2</h1>
+			<p>내용1</p>
+			<section>
+				<h1>자식 요소 선택자</h1>
+				<p>내용2</p>
+			</section>
+		</div>
+		
+		<script type="text/javascript">
+			// 자식 요소 선택자 >, children()
+			// 조건을 입력하지 않을 경우 모든 자식 요소를 선택
+			$("#wrap > h1").css("border", "2px solid red");						// #wrap의 자식 요소 중 h1 요소들 선택
+			
+			$("#wrap").children("p").css("background-color", "pink");			// #wrap의 자식 요소 중 p 요소를 선택
+			
+			$("#wrap>section>").css("background-color", "aqua");				// #wrap의 자식 요소 중 section 요소의 자식 요소 전체 선택
+			
+		</script>
+		
+	</body>
+</html>

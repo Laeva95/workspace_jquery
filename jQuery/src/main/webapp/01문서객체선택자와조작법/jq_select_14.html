@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	</head>
+	<body>
+		<!-- 상위 요소 선택자 parents() 사용 -->
+		<h1 class="title">선택자</h1>
+		
+		<section>
+			<div>
+				<p class="txt1">내용</p>	
+			</div>
+		</section>
+			<section>
+			<div>
+				<p class="txt2">내용</p>	
+			</div>
+		</section>
+		
+		<script type="text/javascript">
+			
+			// 상위 요소 선택자 parents()
+			$(".txt1").parents().css("border", "2px dashed red");
+			
+			// parents()로 선택한 상위 요소 중에서 "div" 요소만 선택
+			$(".txt2").parents("div").css("border", "4px dotted blue");
+		
+		</script>
+		
+	</body>
+</html>

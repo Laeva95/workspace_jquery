@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		
+	</head>
+	<body>
+		<h1>나도 데려가줘</h1>
+		<h1 class="tit">제이쿼리</h1>
+		<h2 id="a">선택자</h2>
+		<h2>선택자2</h2>
+		<h3 class="tit">직접선택자</h3>
+		
+		<script type="text/javascript">
+			// 종속 선택자
+			$("h1.tit").css("color", "yellow");
+			
+			$("h2#a").css("color", "red");
+			document.getElementsByTagName("h2")[0].style.color = red;
+		
+		</script>
+	</body>
+</html>
