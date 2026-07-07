@@ -20,7 +20,7 @@
             border: 1px solid #ccc;
             margin-bottom: 5px;
         }
-        .remove-btn {
+        .remove-btn, #remove-all {
             background-color: red;
             color: white;
             border: none;
@@ -57,7 +57,66 @@
 
 */		
 		$(function(){
-		
+			// 추가 버튼에 click 이벤트 등록
+			$("#addTodoBtn").on("click", function(){
+				
+				// input 요소에 입력한 할일을 공백 없이 가져옴
+				const todo = $("#todoInput").val().trim();
+				
+				// 입력한 todo가 공백인지 아닌지 확인
+				if(todo){
+					addTodoList(todo);
+				}else{
+					alert("내용을 입력해주세요");
+				}
+				
+				// 확인 후 input 내용을 삭제하고, focus 상태로
+				$("#todoInput").val("").focus();
+			});
+			
+			// 키보드 엔터 입력시 이벤트 등록
+			$("#todoInput").on("keyup", function(e){
+				if(e.key !== "Enter")
+					return;
+				
+				// input 요소에 입력한 할일을 공백 없이 가져옴
+				const todo = $("#todoInput").val().trim();
+				
+				// 입력한 todo가 공백인지 아닌지 확인
+				if(todo){
+					addTodoList(todo);
+				}else{
+					alert("내용을 입력해주세요");
+				}
+				
+				// 확인 후 input 내용을 삭제하고, focus 상태로
+				$("#todoInput").val("").focus();
+			});
+			
+			// 입력한 todo 문자열을 todoList div 요소에 추가시키는 함수
+			function addTodoList(todoList) {
+				// 입력한 todo 문자열을 추가할 div 요소를 동적으로 생성
+				const todoItem = $('<div class="todo-item"></div>');
+				
+				// 생성한 div 요소 내부에 span, button 요소 추가
+				todoItem.html(`<span>${todoList}</span><button class="remove-btn">삭제</button>`);
+				
+				// 생성한 div 요소를 기존 div 요소의 자식 요소로 추가
+				$("#todoList").append(todoItem);
+				
+				// find() 메서드를 사용해서 button 요소를 찾아서 click 이벤트 함수 등록
+				todoItem.find(".remove-btn").click(function(){
+					
+					// 동적으로 생성한 할일 목록 div 제거
+					todoItem.remove();
+					
+				});
+				
+			}
+			
+			$("#remove-all").click(function(){
+				$("#todoList").empty();
+			});
 			
 		});
     </script>
@@ -66,6 +125,7 @@
     <h1>할 일 목록</h1>
     <input type="text" id="todoInput" placeholder="할 일을 입력하세요">
     <button id="addTodoBtn">추가</button>
+    <button id="remove-all">전체 삭제</button>
 
     <div id="todoList"></div>
 
