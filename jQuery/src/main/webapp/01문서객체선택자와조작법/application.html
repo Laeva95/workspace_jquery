@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+  <style>
+  	 
+  	 #student-list{  list-style-type:none;  padding:0;}/*불릿 동그라미 기호 없애서 학생목록 스타일 설정*/
+  	 .student-item{  margin: 5px  0;} /*각 학생 이름 li항목의 바깥 여백(마진 설정)*/
+  	
+  </style>
+
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<h1>학생 관리 시스템</h1>
+	<div>
+		<!-- 학생 이름 입력 input -->
+		<input type="text" id="student-name" placeholder="학생이름" value="">
+	
+		<!-- 학생 추가 버튼 -->
+		<button id="add-student">추가</button>
+	</div>
+	
+	<!-- 학생 이름 목록을 표시할 ul요소 영역 -->
+	<ul id="student-list"></ul>	
+	
+	<script type="text/javascript">
+		//학생들의 이름들을 문자열로 저장 시킬 비어 있는 배열 생성 후 let students변수에 저장
+		  let students = [];
+		//let students = ["김개똥"];
+		//let students = ["김개똥","김구"];
+		//let students = ["김개똥"];              
+		
+
+	</script>
+	
+</body>
+</html>
+
+
+
+
+
+

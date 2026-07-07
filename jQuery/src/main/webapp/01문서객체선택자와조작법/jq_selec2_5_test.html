@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title> 선택자 </title>  
+		<!-- 
+				탐색선택자 중에서  위치탐색 선택자  
+		
+				종류   ->  nth-child(숫자) 또는 nth-child(숫자n)  , nth-last-of-type(숫자)   선택자 
+				
+				
+				nth-child(숫자)
+					- 선택한 요소들 중에서  지정한 숫자에 위치한 요소를 선택
+					- 문법
+						 $("요소들선택:nth-child(숫자)")
+						 
+				nth-child(숫자n)
+					- 선택한 요소들 중에서 지정한 숫자배수에 위치한 요소를 선택 
+					- 문법
+						 $("요소들선택:nth-child(숫자n)") 
+				
+				nth-last-of-type(숫자)
+					- 선택한 요소들 중에서 마지막 위치에서 ~~~ 
+					  거꾸로 탐색을 하는데  지정한 숫자만큼 거꾸로 탐색한 최종 요소를 선택
+					- 문법
+						 $("요소들선택:nth-last-of-type(숫자)")
+		
+		 -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
+		<script>
+		$(function(){
+			
+			// id="menu1"의 자식 li 요소들 중 1번째 요소 선택
+			$("#menu1 li:nth-child(1)").css("background-color", "red");
+			
+			// id="menu1"의 자식 li 요소들 중 2의 배수 요소들 선택
+			$("#menu1 li:nth-child(2n)").css("background-color", "pink");
+			
+			// id="menu2"의 자식 li 요소들 중 뒤에서 1번째 요소 선택
+			$("#menu2 li:nth-last-of-type(1)").css("background-color", "aqua");
+			
+			
+		});
+		</script>
+	</head>
+	<body>
+			<h1>탐색 선택자</h1>
+			<ul id="menu1">
+				<li>내용1-1</li>
+				<li>내용1-2</li>
+				<li>내용1-3</li>
+				<li>내용1-4</li>
+			</ul>
+			<ul id="menu2">
+				<li>내용2-1</li>
+				<li>내용2-2</li>
+				<li>내용2-3</li>
+			</ul>
+	</body>
+</html>
+
+
+
+
+
