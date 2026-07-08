@@ -24,15 +24,28 @@
    		  이렇게 하면 $ 기호를 사용하는 다른 라이브러리의 코드와 충돌을 피할수 있습니다. 
    
    	*/
-   //	$.noConflict();  //  $ 기호를 포기 설정 하고 대신 jQuery단어를 사용합니다
+   $.noConflict();  //  $ 기호를 포기 설정 하고 대신 jQuery단어를 사용합니다
    
    //웹브라우저가 html파일 내부에 작성된 모든 HTML요소들을 로딩했을떄 이벤트 핸들러 함수 호출되게 선언 
    //요약 : load이벤트 등록!
+    //window.onload = function(){
+	//   
+    //};
+  	//$(function(){
+  	//	
+  	//});
     jQuery(function(){
 			//요소들 선택해서 가져올수 있다.
 			
+			// button에 클릭 이벤트 등록
+			jQuery("button").click(function(){
+				
+				jQuery("ㅔ").html("안녕하세요, <span>jQuery</span>");
+				
+			});
 			
    	}); 
+    
    </script>
    
 </head>

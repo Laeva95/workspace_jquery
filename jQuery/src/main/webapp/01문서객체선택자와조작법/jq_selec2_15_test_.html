@@ -35,12 +35,11 @@
 			$("#inner_2 h2").css("backgroundColor", "blue");
 		}
 		
-		
-		$.each($("input[type=checkbox]"), (i, obj) => console.log());
-		
-		
-		
-		
+		// 체크박스가 하나라도 선택되어있으면 h2 글자색 red
+		$.each($("input[type=checkbox]"), (i, obj) => {
+			if($(obj).is(":checked")) 
+				$("#inner_2 h2").css("color", "red");
+		});
 	});
 	</script>
 </head>

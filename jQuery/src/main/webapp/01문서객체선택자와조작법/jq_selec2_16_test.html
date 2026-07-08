@@ -19,7 +19,21 @@
 	<div id="result"></div>
 	
 	<script type="text/javascript">
-
+		let count = 0;
+		// 사이트 이용자가 버튼 클릭 시 실행할 이벤트 등록
+		$("#fetch-data").click(function(){
+			count++;
+			
+			// 외부 회사에서 미리 만들어놓고 제공하는 서버 페이지를 요청
+			$.get("https://jsonplaceholder.typicode.com/posts/" + count, function(data){
+				
+				$("#result").append("<h2>" + data.userId + "</h2><p>" + data.body + "</p>")
+				
+				console.log(data, count);
+			});
+			
+		});
+		
 	</script>
 	
 </body>                             
