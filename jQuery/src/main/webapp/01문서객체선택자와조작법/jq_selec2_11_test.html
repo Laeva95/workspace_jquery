@@ -27,6 +27,18 @@
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script>
   	$(function(){
+  		// id="wrap" 값을 갖는 a 요소 중에서 target 속성을 가진 요소만 선택	
+  		$("#wrap a[target]").css("color", "red");
+  		
+  		// id="wrap" 값을 갖는 a 요소 중에서 href 속성값이 https로 시작하는 요소만 선택
+  		$("#wrap a[href^=https]").css("color", "aqua");
+  		
+  		// a 요소 중에서 href 속성값이 net으로 끝나는 요소만 선택
+  		$("a[href$=net]").css("color", "yellow");
+  		
+  		// id="wrap" 값을 갖는 a 요소 중에서 href 속성값에 co가 포함된 요소들만 선택
+  		$("a[href*=co]").css("background-color", "pink");
+  		
  		  
   	});
   </script>

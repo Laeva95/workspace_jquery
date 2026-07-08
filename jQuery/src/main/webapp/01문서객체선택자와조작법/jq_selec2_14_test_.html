@@ -26,6 +26,14 @@
 	<script>
 	$(function(){
 
+		// id="inner_1" 요소의 하위 요소중 class="txt1" 요소를 선택
+		$("#inner_1").find(".txt1").css("backgroundColor", "aqua");
+		
+		// id="inner_2" 요소의 자식 p요소들을 필터링해서 조건을 충족하는 요소를 선택
+		// filter() 메서드를 통해 index가 짝수인 요소들만 선택
+		$("#inner_2 p").filter((index, obj) => index % 2 === 0).css("backgroundColor", "pink");
+		
+		
 
 	});
 	</script>

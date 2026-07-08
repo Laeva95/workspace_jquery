@@ -37,7 +37,24 @@
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script type="text/javascript">
   	$(function(){
- 
+ 		// id="inner_1" 값을 갖는 요소의 자식 p 요소 중 "내용1"을 텍스트로 포함하는 요소만 선택
+  		$("#inner_1 p:contains(내용1)").css("backgroundColor", "aqua");
+ 		
+ 		// id="outer_wrap" 값을 갖는 요소의 자식 요소의 텍스트와 태그 노드를 선택
+ 		$("#outer_wrap").contents().css("border", "1px solid red");
+ 		
+ 		// id="inner_1" 값을 갖는 요소의 자식 p 요소 중 strong 태그를 포함하는 요소만 선택
+ 		$("#inner_1 p:has(strong)").css("backgroundColor", "red");
+  		
+ 		// id="inner_2" 값을 갖는 요소의 첫번째 p 요소를 제외한 나머지 p요소만 선택
+ 		$("#inner_2 p:not(:first)").css("backgroundColor", "yellow");
+ 		
+ 		// 선택한 요소중 index2의 요소만 선택
+ 		// end(): 선택한 요소의 필터링되기 이전 요소를 다시 선택
+ 		//     => $("#inner_2 p")을 선택한 상태로 되돌림
+ 		$("#inner_2 p").eq(2).css("color", "green").end().eq(1).css("color", "aqua");
+  		
+  		
   	
   	});
   </script>

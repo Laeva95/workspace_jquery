@@ -20,7 +20,26 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	$(function(){
-
+		
+		// id="wrap" div의 보여지는 상태의 p 요소 선택
+		$("#wrap p:visible").css("backgroundColor", "red");
+		
+		// id="wrap" div의 숨겨진 상태의 p 요소 선택
+		$("#wrap p:hidden").css({"display":"block", "backgroundColor":"yellow"});
+		
+		// id="zone2" 요소의 선택 상자에서 선택된 option 요소만 선택해서 값 출력
+		let z1 = $("#zone1 :selected").val();
+		console.log(z1);
+		
+		// id="zone2" 요소의 체크박스 또는 라디오 버튼에서 체크된 요소만 선택
+		let z2 = $("#zone2 :checked").val();
+		console.log(z2);
+		
+		// type=radio인 input 요소의 체크박스 또는 라디오 버튼에서 체크된 요소만 선택
+		let z3 = $("input[type=radio]:checked").val();
+		console.log(z3);
+		
+		
 		
 	});
 	</script>
