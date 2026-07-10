@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<!-- 제이쿼리 설치 -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(function(){
+			// 단독 이벤트 등록 메서드
+			// click 이벤트 등록
+			$(".btn1").click(function(){
+				$("p:contains('내용1')").toggleClass("red");
+			});
+				
+		// =======================================================================
+			// 그룹 이벤트 등록 메서드
+			// on 메서드 사용
+			$(".btn2").on(
+				{
+					"mouseover focus": function(){
+						/* 위 등록한 두 개의 이벤트 중 하나가 발생하면 실행할 코드 내용 */
+						$("p:contains('내용2')").css("color", "blue");
+					},
+					"mouseout blur": function(){
+						/* 위 등록한 두 개의 이벤트 중 하나가 발생하면 실행할 코드 내용 */
+						$("p:contains('내용2')").css("color", "aqua");
+					}
+				}		
+			);
+		});//$(function(){         }); <----닫는 기호를 말함
+	</script>
+	<style type="text/css">
+		.red{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<p>
+		<button class="btn1">버튼1</button>
+	</p>
+	<p>내용1</p>
+	<p>
+		<button class="btn2">버튼2</button>
+	</p>
+	<p>내용2</p>
+	<p>
+		<button class="btn3">버튼3</button>
+	</p>
+	<p>내용3</p>	
+
+
+
+</body>
+</html>
+
+
+

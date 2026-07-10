@@ -296,7 +296,7 @@
 
 			
 					 총정리 (주요 선택자 정리하기)실습
-					 --------- jq_selec-last-test.html 파일을 열어서 작성.
+					 --------- jq_selec-last-test.html 파일을 열어서 작성.	
 					 
 					 
 					 도전 Mission!

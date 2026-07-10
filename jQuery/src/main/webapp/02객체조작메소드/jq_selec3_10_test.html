@@ -13,18 +13,21 @@
    <!-- <li>리스트append</li>  -->
    <!-- <li>리스트appendTo</li> -->
 	</ul>
-	<script>
-		//$("요소선택").append("새요소생성넣기");
-		  $("#listZone").append("<li>리스트append</li>");
-	
-		//$("새요소생성넣기").appendTo("요소선택");
-		  $("<li>리스트appendTo</li>").appendTo("#listZone");
-				
-		//$("요소선택").prepend("새요소생성넣기");
-		  $("#listZone").prepend("<li>리스트prepend</li>");
+	<script>		
 		
-		//$("새요소생성넣기").prependTo("요소선택");	
-		  $("<li>리스트prependTo</li>").prependTo("#listZone");
+		// 1. $("요소선택").append("새요소생성넣기");
+		  $("#listZone").append("<li>리스트append</li>");
+		  
+		// 2. $("새요소생성넣기").appendTo("요소선택");
+		  $("<li>리스트appendTo</li>").appendTo("#listZone");
+
+			
+		// 3. $("요소선택").prepend("새요소생성넣기");
+		  $("#listZone").prepend("<li>리스트prepend</li>");
+		  
+		// 4. $("새요소생성넣기").prependTo("요소선택");	
+		  $("<li>리스트prependTo</li>").prependTo("#listZone");	
+
 	
 	</script>
 	

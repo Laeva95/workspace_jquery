@@ -10,14 +10,12 @@
 //<![CDATA[
 $(function(){	
 
-	//모든 li들을 배열에 담아 선택해 오는데....
-	//li들 중에서도 ul부모요소의 첫번째 li요소를 제외한
-	//두번째,세번째,네번째 모든 li요소들에만  배경색을 노란색으로 설정
+		//모든 li들을 배열에 담아 선택해 오는데....
+		//li들 중에서도 ul부모요소의 첫번째 li요소를 제외한
+		//두번째,세번째,네번째 모든 li요소들에만  배경색을 노란색으로 설정
+		$("li:gt(0)").css("backgroundColor", "yellow");
 	
-	//$("li").not(":eq(0)").css("backgroundColor","yellow");
-	$("#myList li:not(:first)").css("backgroundColor","yellow");
-
-});
+	});
 //]]>
 </script>
 </head>
