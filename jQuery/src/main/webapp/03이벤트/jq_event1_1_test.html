@@ -29,6 +29,14 @@
 					}
 				}		
 			);
+		
+		// ======================================================================
+			
+			$(".btn3").on("click mouseover focus", function(){
+				$("body").css("backgroundColor", "green");
+				$("p:contains('내용3')").text("내용");
+			});
+		
 		});//$(function(){         }); <----닫는 기호를 말함
 	</script>
 	<style type="text/css">

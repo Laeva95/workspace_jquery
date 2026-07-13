@@ -79,7 +79,134 @@
     <button id="clearCart" class="button">장바구니 비우기</button>
 </div>
 <script>
+	// 장바구니를 표현하는 비어있는 객체 생성
+	let cart = {};
+	
+	updateCart();
+	
+	// 장바구니 추가 버튼 클릭 시 실행될 이벤트 등록
+	$(".add-to-cart").on("click", function(){
+		// 클릭한 버튼의 가장 가까운 tr 요소를 row 변수에 저장
+		let row = $(this).closest("tr");
+		
+		// row 요소의 첫번째 td 요소 상품 이름 텍스트를 저장
+		let productName = row.find('td:eq(0)').text();
+		
+		// row 요소의 두번째 td 요소 상품 가격 텍스트를 저장
+		// "," "원"을 빈 공백 문자로 replace메서드를 이용해 치환
+		let productPrice = parseInt(row.find('td:eq(1)').text().replace(",",'').replace("원", ''));
+		
+		// 저장한 값들을 장바구니 객체 변수에 저장
+		// 이미 저장되어 있는 상품이라면 수량 추가, 저장되어 있지 않다면 상품 객체 추가
+		if(cart[productName]){
+			cart[productName].quantity++;
+		}else{
+			// 새로운 상품 정보를 장바구니 객체에 추가
+			cart[productName] = { price:productPrice, quantity:1 };
+		}
+		
+		updateCart();
+		
+	});
+	
+	// 장바구니 화면을 업데이트하는 기능의 함수
+	function updateCart(){
+		// 테이블의 tbody 요소를 가져와서 저장
+		let cartTableBody = $("#cartTable tbody");
+		
+		// tbody 요소에 이미 적혀있는 것이 있다면 먼저 비워둠
+		cartTableBody.empty();
 
+		// 총 가격을 표시할 변수 선언
+		let totalPrice = 0;
+		
+		$.each(cart, function(name, item){
+			// 클릭한 장바구니 추가 버튼이 속한 행의 상품 가격 = 가격 x 수량
+			let totalItemPrice = item.price * item.quantity;
+			
+			// 계산한 가격을 총 가격에 누적 합산
+			totalPrice += totalItemPrice;
+			
+			// 장바구니의 상품 정보를 표시하기 위한 tr 요소를 생성해서 tbody 요소 사이에 추가
+			cartTableBody.append(`
+					<tr>
+						<td>${name}</td>
+						<td>
+							<button class="decrease-quantity button">-</button>
+							<span>${item.quantity}</span>
+							<button class="increase-quantity button">+</button>
+						</td>
+						<td>${totalItemPrice.toLocaleString()}원</td>
+						<td><button class="remove-item button">삭제</button</td>
+					</tr>`);
+		});
+		
+		// 장바구니 상품의 총 가격을 표시할 tr 요소 생성해서 tbody 요소 사이에 추가
+		cartTableBody.append(`
+					<tr>
+						<td colspan="2"><strong>총 가격</strong></td>
+						<td colspan="2"><strong>${totalPrice.toLocaleString()}원</strong></td>
+					</tr>
+				`);
+		
+		
+		// 수량 증가 + 버튼에 등록된 이벤트를 제거 후 다시 이벤트 등록
+		$(".increase-quantity").off("click").on("click", function(){
+			// 클릭된 +버튼의 상위 tr요소에서 첫번째 자식요소 = 상품명을 가져옴
+			let productName = $(this).closest("tr").find("td:eq(0)").text();
+			
+			// 클릭된 버튼의 수량 +1
+			cart[productName].quantity++;
+			
+			// 재귀함수 호출: 함수 내부에서 스스로를 호출하는 함수
+			updateCart();
+		
+		});
+		
+		// 수량 감소 - 버튼에 등록된 이벤트를 제거 후 다시 이벤트 등록
+		$(".decrease-quantity").off("click").on("click", function(){
+			// 클릭된 -버튼의 상위 tr요소에서 첫번째 자식요소 = 상품명을 가져옴
+			let productName = $(this).closest("tr").find("td:eq(0)").text();
+			
+			// 클릭된 버튼의 수량 -1
+			cart[productName].quantity--;
+			
+			// 만약 감소된 상품의 수량이 0 이하 라면 객체에서 속성 삭제
+			if(cart[productName].quantity <= 0)
+				delete cart[productName];
+			
+			// 재귀함수 호출: 함수 내부에서 스스로를 호출하는 함수
+			updateCart();
+		
+		});
+		
+		// 삭제 버튼에 등록된 이벤트를 제거 후 다시 이벤트 등록
+		$(".remove-item").off("click").on("click", function(){
+			// 클릭된 삭제 버튼의 상위 tr요소에서 첫번째 자식요소 = 상품명을 가져옴
+			let productName = $(this).closest("tr").find("td:eq(0)").text();
+			
+			// 해당 상품을 객체에서 삭제
+			delete cart[productName];
+			
+			// 재귀함수 호출: 함수 내부에서 스스로를 호출하는 함수
+			updateCart();
+		});
+		
+		
+		
+	}
+	
+	// 장바구니를 모두 비울때 사용하는 함수
+	$("#clearCart").on("click", function(){
+		// 새로운 빈 객체를 생성해서 cart 변수에 할당
+		cart = {};	
+		
+		// 빈 장바구니 화면을 업데이트
+		updateCart();
+	});
+	
+	
+	
 	
  
 </script>

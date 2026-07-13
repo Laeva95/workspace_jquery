@@ -8,19 +8,39 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 		$(function(){	
-		/*
-			trigger()메소드?  선택한요소에  강제로 이벤트 발생시키는 기능의 메소드  
-		
-				단독 이벤트 등록 메소드와 trigger()메소드를 사용해 강제로 이벤트를 발생시키는 메소드 사용 문법
+			/*
+				trigger()메소드?  선택한요소에  강제로 이벤트 발생시키는 기능의 메소드  
 			
-					순서1. $("이벤트대상요소선택").단독이벤트등록메소드(function(){ 이벤트 처리코드작성;  });
-					
-					순서2. $("이벤트대상요소선택").trigger("등록한단독이벤트메소드명"); 
-					
-					      -> trigger메소드를 호출하면 강제로 등록한 단독이벤트가 발생하게 됩니다.
-		*/
-		
-
+					단독 이벤트 등록 메소드와 trigger()메소드를 사용해 강제로 이벤트를 발생시키는 메소드 사용 문법
+				
+						순서1. $("이벤트대상요소선택").단독이벤트등록메소드(function(){ 이벤트 처리코드작성;  });
+						
+						순서2. $("이벤트대상요소선택").trigger("등록한단독이벤트메소드명"); 
+						
+						      -> trigger메소드를 호출하면 강제로 등록한 단독이벤트가 발생하게 됩니다.
+			*/
+			
+			// 버튼을 강제로 클릭되게 하여 이벤트를 처리하는 방법
+			$(".btn1").click(function(){
+				$("p:contains('내용1')").css("color", "red");
+			});
+			
+			// click 이벤트에 등록된 메서드 호출
+			$(".btn1").trigger("click");
+			
+			
+			// =======================================================
+				
+			let btn2 = $(".btn2");
+			
+			btn2.on("mouseover focus", function(){
+				btn2.parent().next().css("color", "blue");
+			});
+			
+			// mouseover 이벤트에 등록된 메서드 호출
+			btn2.trigger("mouseover");
+			
+			
 			
 		});
 	</script>

@@ -57,6 +57,17 @@
 
 	<script>
 		
+		$(".studentCheckbox").on("change", function(){
+			// 학생 체크박스 요소 전체 선택
+			console.log($(this).parent().next().text() + (this.checked ? ' 체크됨' : ' 체크 해제됨'));
+		});
+		
+		// 전체 선택을 위한 체크박스 요소
+		$("#selectAll").on("click", function(){
+			// 체크박스 요소 클릭 시 실행
+			// 전체 선택된 체크박스의 상태를 selectAll 요소의 checked 상태로 변경
+			$(".studentCheckbox").prop('checked', this.checked).trigger("change");
+		});
 		
 		
 		

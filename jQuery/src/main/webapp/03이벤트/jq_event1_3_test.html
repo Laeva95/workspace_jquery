@@ -22,7 +22,24 @@
 		//주제 : 등록한 이벤트를 요소에서 제거 시키는  off()메소드 사용법
 		//문법
 		//	 $("등록된이벤트가있는요소선택").off("제거할이벤트종류명1  제거할이벤트종류명2");
+		
+	// btn1 버튼 요소 선택 후 click 이벤트 등록
+	$(".btn1").click(function(){
+		// '내용1' p요소를 빨강색으로 변경
+		$("p:contains('내용1')").css("color", "red");
+	});
 	
+	// off 메서드를 통해 click 이벤트 해제
+	$(".btn1").off("click");
+	
+	// btn2 버튼 요소 선택 후 mouseover, focus 이벤트 등록
+	$(".btn2").on("mouseover focus", function(){
+		// '내용2' p요소를 파랑색으로 변경
+		$("p:contains('내용2')").css("color", "blue");
+	});
+	
+	// off 메서드를 통해 mouseover focus 이벤트 해제
+	$(".btn2").off("mouseover focus");
 
 
 		
