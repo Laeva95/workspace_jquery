@@ -23,8 +23,33 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	$(function(){
-		
+		$(document).on("keydown", keyEventFnc);		
 
+		function keyEventFnc(event){
+			let direct = "";
+			
+			// 키보드의 방향키 중 하나를 누르면 어떤 방향키를 눌렀는지 판단하기
+			switch (event.keyCode) {
+			case 37:
+				direct = "LEFT";
+				break;
+			case 38:
+				direct = "TOP";
+				break;
+			case 39:
+				direct = "RIGHT";
+				break;
+			case 40:
+				direct = "BOTTOM";
+				break;
+			default:
+				break;
+			}
+			
+			if(direct){
+				$("#user_id").val(direct);
+			}
+		}
 	});
 	</script>
 </head>

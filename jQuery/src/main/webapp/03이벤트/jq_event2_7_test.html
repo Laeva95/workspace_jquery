@@ -29,18 +29,26 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 		$(function(){
-	
+/* 			
+			delegate() 메서드
+			// 이벤트를 등록할 대상의 상위요소 선택
+			$(".btn_wrap").delegate(".btn_1.on", "mouseover focus", function(){
+				alert("hello!");
+			});
 			
+			// 버튼에 on 클래스 추가
+			$(".btn_1").addClass("on");
 			
-			
-	
+*/
 //--------------------------------------------------------------------------------------------------------
 //one메소드 !!
 //	  2. 라이브 이벤트 등록 문법
 //	     $(document 또는 "이벤트 대상 상위요소선택").one("이벤트종류","동적으로생성된등록할요소선택", function(){  이벤트처리코드작성; });
-		
+			$(document).one("mouseover focus", ".btn_1.on", function(){
+				alert("hello!");
+			})
 			   
-			     
+			$(".btn_1").addClass("on");
 			     
 		});
 	</script>

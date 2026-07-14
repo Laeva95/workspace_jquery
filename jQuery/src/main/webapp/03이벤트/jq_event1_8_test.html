@@ -28,7 +28,9 @@
 	   
 		 //마우스 포인터가 문서내에서 이동되는 동작(mousemove이벤트)를 문서객체에 등록
 		 $(document).mousemove(function(event){
+				$(".posX").text(event.pageX);
 				
+				$(".posY").text(event.pageY);
 			
 			 			 
 		 });

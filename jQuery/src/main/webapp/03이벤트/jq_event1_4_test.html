@@ -32,7 +32,13 @@
 							
 		*/	
 
-		
+		$(document).on("ready", function(){
+			
+			// 웹 브라우저가 로딩한 <img>태그로 보여지는 이미지의 높이 값 얻기
+			let h1 = $("img").height();
+			console.log("ready: ", h1);
+			
+		});
 		
 		
 		
@@ -45,6 +51,13 @@
 		
 				  $(window).on("load",function(){  이벤트 처리코드 작성;  });
 		*/	
+		
+		$(window).on("load", function(){
+			
+			let h2 = $("img").height();
+			console.log("load: ", h2);
+			
+		});
 		
 	</script>
 

@@ -37,9 +37,16 @@
 		
 		//스크롤 막대바를 이동시키는 동작(scroll이벤트)를 윈도우창(window객체)에 등록
 		$(window).on("scroll",function(){
-
+				// 스크롤 이벤트가 발생한 윈도우 객체의 스크롤 막대바가 수직 방향으로 이동한 거리
+				let st = $(this).scrollTop();
 			
-		
+				$(".top").text(st);
+				
+				// 스크롤 이벤트가 발생한 윈도우 객체의 스크롤 막대바가 수평 방향으로 이동한 거리
+				let sl = $(this).scrollLeft();
+				
+				$(".left").text(sl);
+				
 		});
 		
 		

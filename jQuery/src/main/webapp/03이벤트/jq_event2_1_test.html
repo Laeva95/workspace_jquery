@@ -32,9 +32,72 @@
 			 $("이벤트대상요소선택").focus 또는 blur 또는  focusin 또는 focusout();
 		*/
 
+		
+		
+		/* $("#user_id_1, #user_pw_1").on("focus", function(){
+			
+			// focus된 요소 배경색 분홍색으로 변경
+			$(this).css("backgroundColor", "pink");
+			
 
+		});	
+		$("#user_id_1, #user_pw_1").on("blur", function(){
+			
+			// focus 상태에서 벗어난 요소 배경색 삭제
+			$(this).css("background", "none");
+			
+		}); */
+		
+		
+		
+		// ============================================================================
+			$("#user_id_1, #user_pw_1").on({
+				"focus":function(){
+					$(this).css("backgroundColor", "pink");
+				},
+				"blur":function(){
+					$(this).css("background", "none");
+				}
+			});
+		
+		// ================================================================================
+			/* $("form:eq(1)").focusin(function(){
+				
+				// this의 하위 요소 찾는 방법
+				// $("input", this)
+				// $(this).find("input")
+				// $(this).children("input")		-> 자식 요소중에서 input 선택
+				
+				// $("하위요소선택", this): 현재 이벤트를 발생시킨 요소의 하위 요소에서 선택
+				$("#user_id_2", this).focus(function(){
+					$(this).css("backgroundColor", "pink");
+				});
+				$("#user_pw_2", this).focus(function(){
+					$(this).css("backgroundColor", "pink");
+				});
+				
+				$("#user_id_2", this).blur(function(){
+					$(this).css("background", "none");
+				});
+				$("#user_pw_2", this).blur(function(){
+					$(this).css("background", "none");
+				});
+				
+			}); */
 
-
+			// =======================================================================================
+				$("form:eq(1)").on({
+					"focusin":function(){
+						$("#user_id_2, #user_pw_2", this).focus(function(){
+							$(this).css("backgroundColor", "pink");
+						});
+					},
+					"focusout":function(){
+						$("#user_id_2, #user_pw_2", this).blur(function(){
+							$(this).css("background", "none");
+						});
+					}
+				});
 		});//$(function(){});
 	</script>
 </head>

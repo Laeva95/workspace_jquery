@@ -34,7 +34,18 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	$(function(){
+		// 마우스에 대응되는 키보드 이벤트
+		$("#btn1").data({"text":"javascript"}).on({
+			"mouseover focus":overFnc,
+			"mouseout blur": outFnc
+		});
 		
+		function overFnc(){
+			$(".txt").text($(this).data("text"));
+		}
+		function outFnc(){
+			$(".txt").text("");
+		}
 
 	}); 
 

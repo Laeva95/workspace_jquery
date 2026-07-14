@@ -60,8 +60,32 @@
 
 
 	<script type="text/javascript">
-
-		
+	
+		/*
+			<a>요소에 click 이벤트 등록
+		*/
+		$("a[class=btn1]").on("click", function(event){
+			
+			event.preventDefault();
+			
+			// <p>요소의 배경색을 노란색으로 변경
+			$(".txt1").css("backgroundColor", "yellow");
+			
+			
+			// return false;
+			
+		});
+			
+		// form 태그의 전송 이벤트를 차단하기
+		$("#myForm").on("submit", function(event){
+			
+			event.preventDefault();
+			
+			console.log("전송");
+			
+			// return false;
+			
+		});
 	
 	</script>
 

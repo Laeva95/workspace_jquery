@@ -42,8 +42,37 @@
 	 									  function(){mouseout이벤트발생시 처리할 코드;});
 		*/
 		 
+		$("body").on("mouseover", function(){
 			
+			console.log("부모 body 요소에서 mouseover 이벤트가 발생되어 처리됨");
+			
+		});
 		
+		$("body").on("mouseout", function(){
+			
+			console.log("부모 body 요소에서 mouseout 이벤트가 발생되어 처리됨");
+			
+		});
+		
+		
+		
+		// mouseover + mouseout / hover 이벤트 비교
+		$(".btn1").on({
+			"mouseover":function(){
+				$(".txt1").css("backgroundColor", "yellow");
+			},
+			"mouseout":function(){
+				$(".txt1").css("background", "none");
+			}
+		});
+			
+		$(".btn2").hover(
+				function(){
+			$(".txt2").css("backgroundColor", "aqua");
+		},
+				function(){
+			$(".txt2").css("background", "none");
+		});
 	
 	});
 	</script>
