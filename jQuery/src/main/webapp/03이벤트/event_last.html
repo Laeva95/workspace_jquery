@@ -11,7 +11,49 @@
 <script>
 $(function(){ // event_last.html 문서의 내용을 웹브라우저로 로딩해서 읽어 들였을떄 실행되는 function함수 
 	
+	// 1. 기본 글꼴 크기를 14px로 설정함
+	let baseFontSize = 14;
+	const minSize = 8;
+	const maxSize = 50;
 	
+	// 2. 아래 작성한 버튼들의 요소를 가져와서 click 이벤트 등록
+	$(".zoomBtnZone button").on("click", function(){
+		
+		// 클릭 이벤트가 발생한 버튼을 선택해서 가져옴
+		// 만약 클릭 이벤트가 발생한 버튼이 - 버튼이라면
+		if($(this).hasClass("zoomOutBtn"))
+			baseFontSize--;
+		// 만약 클릭 이벤트가 발생한 버튼이 + 버튼이라면
+		else if($(this).hasClass("zoomInBtn"))
+			baseFontSize++;
+		// 만약 클릭 이벤트가 발생한 버튼이 100% 버튼이라면
+		else
+			baseFontSize = 14;
+		
+		// 폰트 업데이트 함수 호출
+		updateFont(baseFontSize);
+		
+	});
+	
+	// 매개변수 사이즈로 폰트를 업데이트하는 함수
+	function updateFont(size){
+		// 매개변수가 최소 사이즈보다 작으면 변경하지 않고 종료
+		if(size < minSize){
+			baseFontSize = minSize;
+			return;
+		}
+		// 매개변수가 최대 사이즈보다 크다면 변경하지 않고 종료
+		else if(size > maxSize){
+			baseFontSize = maxSize;
+			return;
+		}
+		
+		// fonSize 텍스트를 업데이트
+		$(".fontSize").text(baseFontSize + "px");
+		
+		// body 요소 전체 영역을 선택해서 글꼴 크기 업데이트
+		$("body").css("fontSize", baseFontSize + "px");
+	}
 	
 });
 </script>
