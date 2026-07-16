@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> Plugin </title>
+	<!-- 
+		주제 : bxSlider 플러그인을 활용하여 자동 슬라이드 배너 (사진첩 기능)을 만듭니다. 
+	
+		bxSlider 플러그인이란?
+			여러개의 배너에 슬라이드 기능을 간편하게 적용할수 있는 플러그인.
+			
+		bxSlider 플러그 사용 문법
+			참조변수  = $("요소선택").bxSlider({옵션들 설정 });	
+	 -->
+	 
+
+<!--
+	 1. bxslider 홈페이지에 요청한 파일의 코드를 불러와서 현재 html 파일에 적용
+	 2. JQuery 문법을 사용하기 위한 라이브러리를 불러와서 현재 html 파일에 적용
+	 
+ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+
+	
+	<style>
+		*{margin: 0;padding: 0;}
+		#gallery_wrap{
+			margin: 0 auto;
+			width: 640px;
+		}
+	</style>
+	<script>
+	$(function() {
+		let ul = $(".slide_gallery").bxSlider({
+			// fade, vertical, horizontal
+			mode:"fade",
+			
+			// 자동으로 다음 슬라이드 넘겨짐
+			auto:true,
+			
+			// 슬라이드 전환 속도
+			speed:1000,
+			
+			// 이전, 다음 화살표 표시
+			controls:true
+		});
+		
+		// 이전 슬라이드로 전환할 수 있도록 클릭 이벤트 등록
+		$("#prev").on("click", function(){
+			ul.goToPrevSlide();
+		});
+		
+		// 다음 슬라이드로 전환할 수 있도록 클릭 이벤트 등록
+		$("#next").on("click", function(){
+			ul.goToNextSlide();
+		})
+	
+	});
+	</script>
+</head>
+<body>
+	<div id="gallery_wrap">
+		<ul class="slide_gallery">
+			<li><img src="images/pic_1.jpg" alt="사진1"></li>
+			<li><img src="images/pic_2.jpg" alt="사진2"></li>
+			<li><img src="images/pic_3.jpg" alt="사진3"></li>
+			<li><img src="images/pic_4.jpg" alt="사진4"></li>
+			<li><img src="images/pic_5.jpg" alt="사진5"></li>
+			<li><img src="images/pic_6.jpg" alt="사진6"></li>
+			<li><img src="images/pic_7.jpg" alt="사진7"></li>
+			<li><img src="images/pic_8.jpg" alt="사진8"></li>
+		</ul>
+		<button id="prev">이전</button> &nbsp;&nbsp; <button id="next">다음</button>
+		
+	</div>
+</body>
+</html>
+
+
+
+
+
+
