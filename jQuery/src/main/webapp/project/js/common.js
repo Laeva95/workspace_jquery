@@ -248,7 +248,21 @@ $(".print_btn").on("click", function(event){
    다시 안내가이드 배경 이미지가 다시 나타나게 하기 
    */
 
-   
+   // 검색창 input 요소를 가져와서 이벤트 등록
+   $("#keyword").on("focus", function(){
+	
+		// focus 이벤트가 발생한 input 요소를 선택해 가져와 검색창의 배경 힌트 이미지 위치를 변경
+		// 화면에서 보이지 않도록 y 좌표 값을 -500px으로 변경
+		$(this).css("backgroundPosition", "0 -500px");	
+	
+   }).on("blur", function(){
+		
+		// focus 이벤트가 종료되면 이벤트가 발생한 input 요소의 배경 힌트 이미지 위치를 원래대로 변경
+		// 만약 입력된 값이 있다면 원상 복구하지 않음
+		if($(this).val() === ""){
+			$(this).css("backgroundPosition", "0 0");	
+		}
+   });
    
  
  
@@ -274,8 +288,48 @@ $(".print_btn").on("click", function(event){
   */ 
   /*GNB 메뉴*/
 
+  // 마우스 포인터가 올라가있는 상위 a 요소를 저장시킬 변수
+let beforeEl;
 
+// id="gnb"의 모든 li 요소의 자식 a요소를 배열로 선택
+$("#gnb>li>a").on("mouseover focus", function(){
+	
+	// 이미 펼쳐진 서브 메뉴가 있다면 이를 선택해서 위로 접기
+	$("#gnb ul:visible").slideUp("fast");
+	
+	// 상위 메뉴 영역 a 중에서 하나의 a 메뉴 영역에 마우스 포인터가 올라가있거나 포커스 상태라면
+	// a요소의 자식 img 태그의 src 속성을 변경
+	let imgSrc = $("img", this).attr("src");
+	
+	// 이미지 파일 경로의 src 주소 값을 out 값만 over 값으로 치환
+	let newSrc = imgSrc.replace("out.gif", "over.gif");
+	
+	// 치환하여 변경한 값을 img 태그의 src 속성에 입력
+	$("img", this).attr("src", newSrc);
+	
+	// 마우스 포인터가 올라간 a 태그의 서브 메뉴 영역 ul 태그를 slideDown으로 내림
+	// next(): 다음 형제 요소
+	$(this).next().stop().slideDown(1000);
+	
+	// 현재 마우스 포인터가 올라간 a 요소를 선택해서 beforeEl 변수에 저장
+	beforeEl = $(this);
+		
+});
   
+
+// id="gnb"의 모든 ul 태그의 하위 li 태그를 모두 선택해서
+// 마우스 포인터가 완전히 벗어났는지 확인
+$("#gnb>li").on("mouseleave", function(){
+	
+	// 펼쳐져있는 서브 메뉴 영역 안쪽 ul 4쌍 중 하나가 있으면 slideUp()으로 숨김
+	$("#gnb ul:visible").slideUp(1000);
+	
+	// 만일 마우스 포인터가 올라가 있거나 포커스가 생성되어 있던 a 요소가 존재한다면
+	if(beforeEl){
+		beforeEl.children("img").attr("src", beforeEl.children("img").attr("src").replace("over.gif", "out.gif"))
+	}
+	
+});
  
  
  
@@ -312,6 +366,17 @@ $(".print_btn").on("click", function(event){
 	
 	// a 태그의 기본 이벤트 차단
 	return false;
+ });
+ $("#total_close>a").on("click", function(event){
+	
+	// a 태그의 기본 이벤트 차단
+	event.preventDefault();
+	
+	// 하위 서브 메뉴 div 요소를 닫기(500ms)
+	$("#total_menu").slideUp(500);
+	
+	// 전체 메뉴의 화살표 이미지를 ▼으로 변경
+	$("#total_btn>a>img").attr("src", "images/allmenu_btn_out.gif");
  });
   
 
@@ -368,7 +433,22 @@ $(".print_btn").on("click", function(event){
     지정한 사이트가 열리도록 만들것입니다.  
   */
    
-   
+   // form 요소를 가져와서 submit 이벤트 등록
+   // submit: 관련 사이트 이동을 클릭한 동작
+   $("form[name=rel_f]").on("submit", function(){
+	
+		// form 태그 하위 select 요소 선택해서 option의 val 값 저장
+		let url = $("select", this).val();
+	
+		// 새로운 웹 브라우저 창을 띄움
+		// 변수 url에 저장한 option 태그의 val 값을 통해 주소 요청
+		// window.open();
+		window.open(url);
+		
+		//form 요소의 기본 이벤트 차단
+		return false;
+		
+   });
 	
 	
 	
@@ -390,8 +470,22 @@ $(".print_btn").on("click", function(event){
     요약 : div에 css문법으로 설정된 기본전체 문서 상단에서 퀵 메뉴영역(div)이 위치한 top속성값 !
               퀵 메뉴가 아래로 위치한 top속성값 얻기 
   */
-	
 
+// id="quick_menu" 요소의 top 속성 값 저장	
+let defaultTop = parseInt($("#quick_menu").css("top"));	// -> 100
+
+// 웹 브라우저 윈도우창에 scroll 이벤트 등록
+$(window).on("scroll", function(){
+	
+	// scroll 이벤트가 발생한 윈도우창을 다시 선택해서
+	// 스크롤 막대바가 세로 아래 방향으로 이동된 높이값 구하기
+	let scv = $(this).scrollTop();
+	
+	// 1초만에 스크롤 막대바의 이동 거리만큼 퀵 메뉴 영역이 따라오는 애니메이션을 주기 위해
+	// scv 변수 값과 defaultTop 값을 합해서 이동
+	$("#quick_menu").stop().animate({top:scv+defaultTop + "px"});
+	
+});
 	   
 	   
 

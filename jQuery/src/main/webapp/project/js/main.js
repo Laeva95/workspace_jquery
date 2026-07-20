@@ -39,10 +39,46 @@ $(function() {
 			</ul>
 		</div>
   */
-	
-	
+	window.mySwipe = $("#mySwipe").Swipe({
+		auto: 3000,				// 자동 슬라이드 전환
+		continuius: true,		// 슬라이드를 반복해서 보여줌
+		callback: function(index, element){	// index: li 요소의 index 위치 값
+											// element: li 요소
+			
+			// 슬라이드 하단의 불릿 이미지를 on에서 off로 변환
+			$(".touch_bullet .active").attr("src", "images/visual_bullet_off.png");
+			
+			// 클래스 active 값을 삭제
+			$(".touch_bullet .active").removeClass("active");
+			
+			// 전환된 슬라이드 화면의 불릿 이미지를 off에서 on으로 변환
+			$(".touch_bullet img").eq(index).attr("src", "images/visual_bullet_on.png");
+			
+			// 클래스 active 값을 추가
+			$(".touch_bullet img").eq(index).addClass("active");			
+		}						// 슬라이드 전환 후 자동으로 호출되는 함수 설정
 		
+	}).data('Swipe');			// Swipe 메서드로 생성된 객체를 가져오는데 사용
+	
+	// 이전, 다음 버튼을 클릭했을 때 슬라이드 전환 처리
+	
+	// 이전 < a 태그를 선택해 click 이벤트 등록 후 이전 배너 사진 화면으로 이동
+	$(".touch_left_btn a").on("click", function(){
 		
+		mySwipe.prev();		// 이전 배너로 슬라이드 전환 처리
+		
+		return false;
+		
+	});
+		
+	// 다음 > a 태그를 선택해 click 이벤트 등록 후 다음 배너 사진 화면으로 이동
+	$(".touch_right_btn a").on("click", function(){
+		
+		mySwipe.next();		// 다음 배너로 슬라이드 전환 처리
+		
+		return false;
+		
+	});
 		
 		
 //-----------------------------------------------------------
@@ -56,11 +92,67 @@ $(function() {
    재생 ▶ 버튼을 누르면 다시 배너가 넘어가게 됨 
    */
 	  
+	/*
+		1. index.html을 웹 브라우저로 처음 요청했을 때
+		[1] 버튼 이미지에 관한 배너1 이미지만 보이게 하고 나머지는 숨김
+	*/
+	// 첫번째 dd를 제외한 나머지 dd 요소를 숨김 처리
+	$("#roll_banner_wrap dd").not(":first").hide();
 	
-
-	 	 
+	// 첫번째 [1]버튼 img 태그를 감싸고 있는 a 요소를 선택해서 onBtn 변수에 저장
+	let onBtn = $("#roll_banner_wrap dt a:first"); 	 
 	  
-	 
+	// img 태그를 감싸고 있는 모든 a 요소를 선택해서 click 이벤트 등록
+	$("#roll_banner_wrap dt a").on("click", function(){
+
+		// 현재 화면에 노출된 배너 사진 이미지 dd 영역을 숨김
+		$("#roll_banner_wrap dd:visible").hide();
+		
+		// onBtn 변수에 저장된 첫번째 a의 하위 요소 img를 선택
+		// src 속성의 이미지 주소를 하얀색 [1] 이미지로 변경
+		$("img", onBtn)
+		.attr("src", $("img", onBtn)
+		.attr("src").replace("over.gif", "out.gif"));
+		
+		// [1]~[4] 중 클릭한 a의 index 번호를 가져오기
+		let num = $("#roll_banner_wrap dt a").index(this);
+		
+		// 클릭한 a의 index 값과 일치하는 dd 영역만 화면에 표시
+		$("#roll_banner_wrap dd").eq(num).show();
+		
+		// 클릭한 a의 하위 img 요소의 src 속성값을 over 이미지로 변경
+		$("img", this)
+		.attr("src", $("img", this)
+		.attr("src").replace("out.gif", "over.gif"));
+		
+		// 클릭한 a 요소를 onBtn 변수에 저장
+		onBtn = $(this);
+						
+		// 모든 a 태그의 기본 이벤트 차단
+		return false;
+	}); 
+	
+	
+	/*
+		3. 
+	*/
+	
+	
+	
+	/*
+		4. 재생버튼 또는 정지버튼을 클릭했을 때 이벤트 처리
+	*/
+	
+	// 재생 버튼을 선택해서 click 이벤트 등록
+	$(".playBtn").on("click", function(){
+		
+		alert("재생 클릭됨");		
+		
+		return false;
+	});
+	
+	
+	
  //-----------------------------------------------------------
   /*
    주제 : 탭 메뉴를 이용해 최근 게시물 리스트 만들기
@@ -89,10 +181,40 @@ $(function() {
 
 */
 	
+// 베스트 book 목록 태그 영역인 ul 요소를 선택해서 bxSlider 메서드 적용
+let mySlider = $("#best_bg ul").bxSlider({
+	mode: "horizontal",	// 수평 방향으로 슬라이드가 전환됨
+	speed: 500, 		// 0.5초만에 슬라이드 이동
+	pager: false,		// 페이징 표시를 숨김
+	moveSlides: 2,		// 이동 슬라이드 2개
+	slideWidth: 125,	// 슬라이드 폭 125px
+	minSlides: 1,		// 최소 노출될 슬라이드 1개
+	maxSlides: 4,		// 최대 노출될 슬라이드 3개
+	slideMargin: 30,	// 슬라이드 사이 간격
+	auto: true,			// 자동 슬라이드 전환
+	autoHover: true,	// 마우스 오버 시 슬라이드 전환 정지
+	controls: false		// 이전, 다음 버튼을 숨김
+});
+
+// <이전 <p>요소를 클릭할 때마다 슬라이드를 한 단계 이전으로 이동
+$(".prev_btn").on("click", function(){
 	
-	 
+	// 한 단계 이전 슬라이드로 전환
+	mySlider.goToPrevSlide();
+	
+	// a 태그의 기본 이벤트 차단
+	return false;
+});
 
-
+// >다음 <p>요소를 클릭할 때마다 슬라이드를 한 단계 다음으로 이동
+$(".next_btn").on("click", function(){
+	
+	// 한 단계 다음 슬라이드로 전환
+	mySlider.goToNextSlide();
+	
+	// a 태그의 기본 이벤트 차단
+	return false;
+});
 
  //-----------------------------------------------------------
 
