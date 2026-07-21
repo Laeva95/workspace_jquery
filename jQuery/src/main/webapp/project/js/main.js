@@ -201,7 +201,33 @@ $(function() {
   - 먼저 탭버튼에 <a>에 on()메서드를 사용하여 mouseover,focus,click이벤트를         등록하였고,
   	이벤트 핸들러에는 이벤트가 발생 했을때 마우스를 올린 탭 버튼과 탭에 해당하는 게시물 목록이 활성화되어 보이도록 만들자. 
    */
-	 	
+  // 탭 버튼에 mouseover, focus, clic 이벤트를 등록
+  // 해당 탭에 맞는 게시판 글이 보이도록 설정
+  let onTab = $("#tabmenu dt a:first")
+
+  $("#tabmenu dt a").on("mouseover focus click", function(){
+	
+	// 현재 노출된 dd 태그를 선택하여 게시물 리스트영역 dd를 숨김
+	$("#tabmenu dd:visible").hide();
+	
+	// onTab 변수에 저장된 공지사항 a 태그 영역의 하위 img 요소를 선택해
+	// 빨간색 이미지에서 회색 이미지로 변경
+	$("img", onTab)
+	.attr("src", $("img", onTab)
+	.attr("src").replace("over", "out"));
+	
+	// 이벤트가 발생한 a 요소를 선택해서 그 부모 요소인 dt를 선택하고, 그 하위의 dd 요소를 선택
+	$(this).parent().next().show();
+	
+	// 이벤트가 발생한 a 요소를 선택하고 하위 img 요소를 선택해
+	// 회색 이미지를 빨간색 이미지로 변경
+	$("img", this).attr("src", $("img", this).attr("src").replace("out", "over"));
+	
+	// 이벤트가 발생한 a 요소를 선택해서 onTab 변수에 저장
+	onTab = $(this);
+	
+  }); 	
+  
 	  
  //-----------------------------------------------------------
 	  
