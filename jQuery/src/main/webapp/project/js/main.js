@@ -313,7 +313,40 @@ $(".next_btn").on("click", function(){
          $.cookie("pop",null);
   	  		
   */
-	  
+	 // 팝업창 연동
+	 // 저장된 "pop"에 쿠키 값을 검사하여 저장되어 있지 않다면 팝업창을 띄움
+	 // 사이트 이용자가 '하루동안 이 창 열지않기'를 눌렀을 경우 쿠키를 생성하여 팝업창을 띄우지 않음
+	 
+	 // "pop" 쿠키의 값이 "no"가 아니라면 팝업창을 띄움
+	 if($.cookie("pop") != "no"){
+		$("#pop_wrap").show();
+	 }
+	 
+	 // 팝업창에 마우스를 올리면 마우스 포인터 모습 변경
+	 // 팝업창을 드래그해서 움직일 수 있도록 설정
+	 $("#pop_wrap").css("cursor", "move").draggable();
+	 
+	 // 팝업창 영역 하위의 area 요소 두개를 배열로 선택
+	 // 0 index 값인 첫번째 요소 선택
+	 $("#pop_wrap area:eq(0)").on("click", function(){
+		
+		$("#pop_wrap").fadeOut("slow");
+		
+		// 기본 이벤트 차단
+		return false;
+	 });
+	 
+	 // 팝업창 영역 하위의 area 요소 두개를 배열로 선택
+	 // 1 index 값인 두번째 요소 선택
+	 $("#pop_wrap area:eq(1)").on("click", function(){
+		
+		// "pop" 쿠키를 생성해서 하루동안 보관
+		$.cookie("pop", "no", { expires: 1 });
+		
+		$("#pop_wrap").fadeOut("slow");
+		
+		return false;
+	 });
 
 	
 
