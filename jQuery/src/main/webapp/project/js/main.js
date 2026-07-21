@@ -134,10 +134,25 @@ $(function() {
 	
 	
 	/*
-		3. 
+		3. autoPlay 함수 정의
+		역할: 4초 간격으로 호출되어 [1] ~ [4] 사이의 a 태그가 강제로 클릭되도록 함
 	*/
+	let btnNum = 0;
 	
+	function autoPlay(){
+		btnNum++;
+		// btnNum 값이 4 이상이 되면 0으로 초기화
+		btnNum = btnNum >= 4 ? 0 : btnNum;
+		
+		// 4초 간격으로 [1] ~ [4] a 태그를 강제 클릭
+		$("#roll_banner_wrap dt a").eq(btnNum).trigger("click");
+		
+		// 4초 간격으로 자기 자신을 호출(재귀함수)
+		auto1 = setTimeout(autoPlay, 4000);
+	}
 	
+	// 최초 한번은 3초 휴식 후 호출
+	var auto1 = setTimeout(autoPlay, 3000);
 	
 	/*
 		4. 재생버튼 또는 정지버튼을 클릭했을 때 이벤트 처리
@@ -146,8 +161,30 @@ $(function() {
 	// 재생 버튼을 선택해서 click 이벤트 등록
 	$(".playBtn").on("click", function(){
 		
-		alert("재생 클릭됨");		
+		// 사이트 방문자가 재생버튼을 여러번 클릭 시 setTimeout()메소드가 쌓여서 문제가 될 수 있음
+		// clearTimeout()으로 제거한 후 setTimeout()메서드를 다시 호출하도록 해야함
+		clearTimeout(auto1);
 		
+		auto1 = setTimeout(autoPlay, 1000);
+		
+		// 재생 버튼, 정지 버튼 이미지 변경
+		$(".playBtn img").attr("src", "images/pop_btn_play_on.gif");
+		$(".stopBtn img").attr("src", "images/pop_btn_stop_off.gif");
+		
+		// a 태그의 기본 click 이벤트 차단
+		return false;
+	});
+	
+	$(".stopBtn").on("click", function(){
+		
+		// setTimeout 메서드를 정지하여 자동 배너 이미지 정지
+		clearTimeout(auto1);
+		
+		// 재생 버튼, 정지 버튼 이미지 변경
+		$(".playBtn img").attr("src", "images/pop_btn_play_off.gif");
+		$(".stopBtn img").attr("src", "images/pop_btn_stop_on.gif");
+		
+		// a 태그의 기본 click 이벤트 차단
 		return false;
 	});
 	
